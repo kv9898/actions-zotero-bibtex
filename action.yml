@@ -1,0 +1,27 @@
+name: 'Zotero BibTeX Export'
+description: 'Fetch a Zotero collection (user or group) and export to BibTeX with pinned keys'
+author: 'Dianyi Yang'
+inputs:
+  api-key:
+    description: 'Zotero API key'
+    required: true
+  library-id:
+    description: 'Numeric Zotero user ID or group ID'
+    required: true
+  coll-key:
+    description: 'Zotero collection key'
+    required: true
+  is-group:
+    description: 'Set to "true" if using a group library, otherwise defaults to user library'
+    required: false
+    default: 'false'
+  out-bib-path:
+    description: 'Output .bib path/filename'
+    required: false
+    default: 'references.bib'
+runs:
+  using: 'node20'
+  main: '.github/scripts/fetch_library_bibtex_with_pinned.mjs'
+branding:
+  icon: 'book'
+  color: 'blue'
