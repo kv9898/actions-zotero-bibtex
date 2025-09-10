@@ -1,0 +1,17 @@
+{
+  "name": "actions-zotero-bibtex",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "bun run tsc && bunx ncc build dist/index.js -o dist"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "@types/node": "^20.11.30",
+    "@vercel/ncc": "^0.38.1"
+  }
+}
