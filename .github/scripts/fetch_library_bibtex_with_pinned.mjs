@@ -5,14 +5,14 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const API_KEY = process.env.API_KEY || process.env.INPUT_API_KEY;
-const IS_GROUP = process.env.IS_GROUP || process.env.INPUT_IS_GROUP || "false";
-const LIBRARY_ID = process.env.LIBRARY_ID || process.env.INPUT_LIBRARY_ID;
-const COLL_KEY = process.env.COLL_KEY || process.env.INPUT_COLL_KEY;
-const OUT_BIB_PATH = process.env.OUT_BIB_PATH || process.env.INPUT_OUT_BIB_PATH || "references.bib";
+const API_KEY      = process.env.INPUT_API_KEY;
+const IS_GROUP     = process.env.INPUT_IS_GROUP || "false";
+const LIBRARY_ID   = process.env.INPUT_LIBRARY_ID;
+const COLL_KEY     = process.env.INPUT_COLL_KEY;
+const OUT_BIB_PATH = process.env.INPUT_OUT_BIB_PATH || "references.bib";
 
 if (!API_KEY || !LIBRARY_ID || !COLL_KEY) {
-  console.error("Missing API_KEY / LIBRARY_ID / COLL_KEY environment variables");
+  console.error("Missing required inputs: api-key / library-id / coll-key");
   process.exit(1);
 }
 
