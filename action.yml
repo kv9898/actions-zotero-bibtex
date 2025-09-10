@@ -21,7 +21,7 @@ inputs:
     default: 'references.bib'
 runs:
   using: 'node20'
-  main: '.github/scripts/fetch_library_bibtex_with_pinned.mjs'
+  main: 'dist/index.js'
 branding:
   icon: 'book'
   color: 'blue'
