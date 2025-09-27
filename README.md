@@ -18,6 +18,8 @@ Designed for reproducible bibliography builds in GitHub workflows.
 
   - Acronym protection in titles
 
+  - Converts `journal = {...}` to `journaltitle = {...}` for `@article`
+  
   - Converts `journal = {...}` to `organization = {...}` for `@online`
 
 - Configurable **output path & filename**

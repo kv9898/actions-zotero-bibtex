@@ -151,9 +151,36 @@ async function run() {
             return `@${mapped}{${newKey},`;
         });
 
-        bib = bib.replace(/(journal\s*=\s*\{)([^}]+)(\})/gi, (_, pre, content) => {
-            return `organization = {${content}}`;
-        });
+        // Context-aware journal field conversion
+        bib = bib.split(/(?=@)/).map(part => {
+            if (!part.trim() || !part.startsWith('@')) {
+                return part;
+            }
+            
+            // Extract entry type
+            const typeMatch = part.match(/@(\w+)\{/);
+            if (!typeMatch) {
+                return part;
+            }
+            
+            const entryType = typeMatch[1].toLowerCase();
+            
+            // Apply different transformations based on entry type
+            if (entryType === 'article') {
+                // For articles, convert journal to journaltitle
+                return part.replace(/(journal\s*=\s*\{)([^}]+)(\})/gi, (_, pre, content) => {
+                    return `journaltitle = {${content}}`;
+                });
+            } else if (entryType === 'online') {
+                // For online entries, convert journal to organization
+                return part.replace(/(journal\s*=\s*\{)([^}]+)(\})/gi, (_, pre, content) => {
+                    return `organization = {${content}}`;
+                });
+            } else {
+                // For other types, leave journal field as is
+                return part;
+            }
+        }).join('');
 
         bib = protectCapitalsInFields(bib);
         bib = cleanTypeField(bib);
